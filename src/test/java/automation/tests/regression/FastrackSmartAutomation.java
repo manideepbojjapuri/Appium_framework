@@ -17,7 +17,7 @@ public class FastrackSmartAutomation extends BaseTests implements ConnectToFastr
 
 
     @Test (priority = 1)
-    public void connectToFastTrackApp() {
+    public void connectToFastTrackApp() throws InterruptedException {
 
         getLoginPageAction().skipSignup();
         getLoginPageAction().clickTermsAndConditionsRadioButton();

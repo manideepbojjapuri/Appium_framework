@@ -100,13 +100,14 @@ public class ScannerPage extends Page {
         return isDisplayed;
     }
 
-    public String getDeviceName() {
+    public String getDeviceName() throws InterruptedException {
+        Thread.sleep(5000);
         waitUntilElementIsVisible(160, "deviceName");
         return getText(elementFinder.element("deviceName"));
        // return elementFinder.element("deviceName").getText();
     }
 
-    public void selectDevice(String deviceName) {
+    public void selectDevice(String deviceName) throws InterruptedException {
         List<WebElement> elements = elementFinder.elements("dotIndicators");
         for(int i=0; i < elements.size();i++) {
             if(getDeviceName().equalsIgnoreCase(deviceName)) {

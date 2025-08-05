@@ -1,0 +1,23 @@
+name: Core Framework Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build with Maven and execute scripts
+        run: mvn clean install test -DtestSuite="MobileSuite.xml" --file pom.xml
+        continue-on-error: true
+
+      - name: Upload extent reports to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extent-reports
+          path: target/allure-results
